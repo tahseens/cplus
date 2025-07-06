@@ -11,9 +11,6 @@
 # macOS metadata
 .DS_Store
 
-# VS Code settings
-.vscode/
-
 # Compiled binary
 underflow
 overandunderflow/underflow
