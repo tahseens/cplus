@@ -1,0 +1,22 @@
+# Build artifacts
+*.o
+*.out
+*.obj
+*.exe
+*.a
+*.so
+*.dll
+*.dylib
+
+# macOS metadata
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Compiled binary
+underflow
+overandunderflow/underflow
+
+# Debug symbols
+*.dSYM/
