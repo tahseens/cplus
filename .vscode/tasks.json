@@ -26,7 +26,7 @@
       "type": "shell",
       "command": "./overandunderflow/underflow",
       "group": "test",
-      "dependsOn": "Build underflow.cpp with clang++"
+      "dependsOn": "Build C++ with clang++"
     }
   ]
 }
