@@ -10,9 +10,9 @@
         "-Wall",
         "-Wextra",
         "-g",
-        "overandunderflow/underflow.cpp",
+        "overandunderflow/overflow.cpp",
         "-o",
-        "overandunderflow/underflow"
+        "overandunderflow/overflow"
       ],
       "group": {
         "kind": "build",
