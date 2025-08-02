@@ -11,7 +11,7 @@
         "-Wextra",
         "-g",
         "main.cpp",
-        "overandunderflow/*.cpp",
+        "*/*.cpp",
         "-o",
         "main"
       ],
@@ -23,7 +23,7 @@
 
     },
     {
-      "label": "Run underflow executable",
+      "label": "Run Compiled executable",
       "type": "shell",
       "command": "./main",
       "group": "test",
