@@ -2,7 +2,7 @@
 #include <limits>
 #include "overandunderflow/Underflow.cpp"
 #include "overandunderflow/Overflow.cpp"
-#include "files/FileReader.cpp"
+#include "files/FileReader.h"
 
 int main() {
 
