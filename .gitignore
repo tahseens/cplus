@@ -12,8 +12,7 @@
 .DS_Store
 
 # Compiled binary
-underflow
-overandunderflow/underflow
+artifacts/*
 
 # Debug symbols
 *.dSYM/

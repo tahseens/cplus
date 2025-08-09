@@ -13,7 +13,7 @@
         "main.cpp",
         "*/*.cpp",
         "-o",
-        "main"
+        "artifacts/main"
       ],
       "group": {
         "kind": "build",
@@ -25,10 +25,12 @@
     {
       "label": "Run Compiled executable",
       "type": "shell",
-      "command": "./main",
+      "command": "./artifacts/main",
       "group": "test",
       "dependsOn": "Build C++ with clang++"
     }
+
   ]
+
 }
 
