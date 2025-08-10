@@ -2,7 +2,9 @@
 #include <limits>
 #include "overandunderflow/Underflow.cpp"
 #include "overandunderflow/Overflow.cpp"
-#include "files/FileReader.h"
+#include "Files/FileReader.h"
+
+using namespace std;
 
 int main() {
 
@@ -13,14 +15,15 @@ int main() {
     underflowDemo.demonstrate();
 
 
-    FileReader reader;
-    std::string filename = "example.txt";
+    string filename = "example.txt";
+    FileReader reader(filename);
 
-    std::cout << "Reading using old style:\n";
-    reader.readFileOldStyle(filename);
 
-    std::cout << "\nReading using modern style:\n";
-    reader.readFileModernStyle(filename);
+    cout << "Reading using old style:\n";
+    reader.readFileOldStyle();
+
+    cout << "\nReading using modern style:\n";
+    reader.readFileModernStyle();
 
 
     return 0;

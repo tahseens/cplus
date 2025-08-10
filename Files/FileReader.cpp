@@ -1,33 +1,37 @@
-#include "FileReader.h"  // Include the header file for FileReader
+#include "FileReader.h"
 
 using namespace std;
 
-    // Old-style file reading
-    void FileReader::readFileOldStyle(const string& filename) {
-        ifstream file(filename.c_str()); // C-style string for compatibility
-        if (!file.is_open()) {
-            cerr << "Failed to open file (old style).\n";
-            return;
-        }
+FileReader::FileReader(const string& filename) : filename(filename) {
 
-        string line;
-        while (getline(file, line)) {
-            cout << line << '\n';
-        }
+}
 
-        file.close(); // Explicit close
+// Old-style file reading
+void FileReader::readFileOldStyle() {
+    ifstream file(filename); // Modern C++ - no c_str() needed
+    if (!file.is_open()) {
+        cerr << "Failed to open file (old style).\n";
+        return;
     }
 
-    // Modern-style file reading
-    void FileReader::readFileModernStyle(const string& filename) {
-        ifstream file(filename); // RAII handles closing
-        if (!file) {
-            cerr << "Failed to open file (modern style).\n";
-            return;
-        }
-
-        for (string line; getline(file, line); ) {
-            cout << line << '\n';
-        }
+    string line;
+    while (getline(file, line)) {
+        cout << line << '\n';
     }
+
+    file.close(); // Explicit close
+}
+
+// Modern-style file reading
+void FileReader::readFileModernStyle() {
+    ifstream file(filename); // Modern C++ - no c_str() needed
+    if (!file) {
+        cerr << "Failed to open file (modern style).\n";
+        return;
+    }
+
+    for (string line; getline(file, line); ) {
+        cout << line << '\n';
+    }
+}
 

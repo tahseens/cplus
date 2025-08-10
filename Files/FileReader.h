@@ -6,10 +6,14 @@
 using namespace std;
 
 class FileReader {
+
+private:
+    string filename;
 public:
+
+    FileReader(const string& filename);
     // Old-style file reading
-    void readFileOldStyle(const string& filename);
-    
+    void readFileOldStyle();
     // Modern-style file reading
-    void readFileModernStyle(const string& filename);
+    void readFileModernStyle();
 };
