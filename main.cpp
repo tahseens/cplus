@@ -3,6 +3,7 @@
 #include "overandunderflow/Underflow.cpp"
 #include "overandunderflow/Overflow.cpp"
 #include "Files/FileReader.h"
+#include "pointers/pointers.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ int main() {
 
     cout << "\nReading using modern style:\n";
     reader.readFileModernStyle();
+
+    ptrdemo::runAllSafe(); // Run safe pointer demos
 
 
     return 0;
