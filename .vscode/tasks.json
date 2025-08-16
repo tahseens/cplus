@@ -10,9 +10,10 @@
         "-Wall",
         "-Wextra",
         "-g",
-        "overandunderflow/overflow.cpp",
+        "main.cpp",
+        "*/*.cpp",
         "-o",
-        "overandunderflow/overflow"
+        "artifacts/main"
       ],
       "group": {
         "kind": "build",
@@ -22,12 +23,14 @@
 
     },
     {
-      "label": "Run underflow executable",
+      "label": "Run Compiled executable",
       "type": "shell",
-      "command": "./overandunderflow/underflow",
+      "command": "./artifacts/main",
       "group": "test",
       "dependsOn": "Build C++ with clang++"
     }
+
   ]
+
 }
 
