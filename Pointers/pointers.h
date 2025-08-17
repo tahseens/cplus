@@ -10,7 +10,7 @@ namespace ptrdemo {
 int* makeRawIntBad();
 
 // GOOD: unique_ptr owning integer
-std::unique_ptr<int> makeInt();
+std::unique_ptr<int> makeSafeInt();
 
 // BAD: returns pointer to local variable (dangling)
 int* danglingPointer();

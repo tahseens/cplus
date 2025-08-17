@@ -7,7 +7,7 @@ int* makeRawIntBad() {
     return new int(42);
 }
 
-std::unique_ptr<int> makeInt() {
+std::unique_ptr<int> makeSafeInt() {
     return std::make_unique<int>(42);
 }
 
@@ -66,7 +66,7 @@ void checkedDereferenceGood(int* p) {
 }
 
 void runAllSafe() {
-    auto up = makeInt();
+    auto up = makeSafeInt();
     std::cout << "unique_ptr value: " << *up << '\n';
 
     std::cout << "Safe value: " << safeValue() << '\n';
