@@ -9,6 +9,8 @@
         "-std=c++20",
         "-Wall",
         "-Wextra",
+        "-fsanitize=address",
+        "-fsanitize-address-use-after-scope",
         "-g",
         "main.cpp",
         "*/*.cpp",
