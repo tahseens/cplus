@@ -4,6 +4,7 @@
 #include "overandunderflow/Overflow.cpp"
 #include "Files/FileReader.h"
 #include "pointers/pointers.h"
+#include "Format/FormatSecurity.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ int main() {
     reader.readFileModernStyle();
 
     ptrdemo::runAllSafe(); // Run safe pointer demos
+
+    format_security::FormatDemo::runAllDemos();
 
 
     return 0;
