@@ -25,6 +25,18 @@ public:
     
     // Run all security demonstrations
     static void runAllDemos();
+    
+    // Explain pointer dereference
+    static void explainPointerDereference();
+    
+    // Demonstrate stack layout
+    static void demonstrateStackLayout();
+    
+    // Compare with other specifiers
+    static void compareWithOtherSpecifiers();
+    
+    // Show real-world pointer attack
+    static void showRealWorldPointerAttack();
 
 private:
     // Helper functions

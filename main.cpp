@@ -10,6 +10,8 @@ using namespace std;
 
 int main() {
 
+    format_security::FormatDemo::runAllDemos();
+
     Overflow overflowDemo;  // Creates object on stack
     overflowDemo.demonstrate();
 
@@ -29,7 +31,6 @@ int main() {
 
     ptrdemo::runAllSafe(); // Run safe pointer demos
 
-    format_security::FormatDemo::runAllDemos();
 
 
     return 0;
