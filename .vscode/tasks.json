@@ -7,10 +7,23 @@
       "command": "clang++",
       "args": [
         "-std=c++20",
+        // === CORE WARNING FLAGS ===
         "-Wall",
         "-Wextra",
+        "-Wpedantic",
+        // === SANITIZERS (for runtime detection) ===
         "-fsanitize=address",
         "-fsanitize-address-use-after-scope",
+        "-fsanitize=undefined",
+        //"-fsanitize=leak", // optional, for memory leak detection
+        //"-fsanitize=thread", // optional, for thread 
+
+        // === ADDITIONAL SECURITY FLAGS ===
+        "-Wstringop-overflow=4",         // String operation overflows
+        "-Wstringop-truncation",         // String truncation warnings
+        "-Warray-bounds=2",              // Array bounds checking
+        "-Wvla-larger-than=1000",        // Variable length array limits
+
         "-g",
         "main.cpp",
         "*/*.cpp",
