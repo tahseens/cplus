@@ -2,50 +2,111 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build C++ with clang++",
+      "label": "Build C++ Debug (Development)",
       "type": "shell",
       "command": "clang++",
       "args": [
         "-std=c++20",
+        
         // === CORE WARNING FLAGS ===
         "-Wall",
         "-Wextra",
         "-Wpedantic",
-        // === SANITIZERS (for runtime detection) ===
+        
+        // === FORMAT STRING SECURITY ===
+        "-Wformat=2",                    // Maximum format checking
+        "-Wformat-security",             // Catches printf(user_input) - CRITICAL!
+        "-Werror=format-security",       // Make format vulnerabilities fatal errors
+        
+        // === SANITIZERS (DEBUG ONLY - too slow for production) ===
         "-fsanitize=address",
         "-fsanitize-address-use-after-scope",
         "-fsanitize=undefined",
-        //"-fsanitize=leak", // optional, for memory leak detection
-        //"-fsanitize=thread", // optional, for thread 
+        //"-fsanitize=leak",             // Optional: memory leak detection
+        //"-fsanitize=thread",           // Optional: thread safety
 
         // === ADDITIONAL SECURITY FLAGS ===
-        "-Wstringop-overflow=4",         // String operation overflows
-        "-Wstringop-truncation",         // String truncation warnings
-        "-Warray-bounds=2",              // Array bounds checking
-        "-Wvla-larger-than=1000",        // Variable length array limits
+        "-Warray-bounds",
+        "-Wvla",
+        "-Wstring-conversion",
+        "-Wshift-overflow",
 
-        "-g",
+        // === DEBUG SETTINGS ===
+        "-g",                            // Debug symbols
+        "-O0",                           // No optimization (better debugging)
+        
         "main.cpp",
         "*/*.cpp",
         "-o",
-        "artifacts/main"
+        "artifacts/main-debug"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "problemMatcher": ["$clang"]
-
     },
+    
     {
-      "label": "Run Compiled executable",
+      "label": "Build C++ Production",
       "type": "shell",
-      "command": "./artifacts/main",
+      "command": "clang++",
+      "args": [
+        "-std=c++20",
+        
+        // === ESSENTIAL WARNINGS ===
+        "-Wall",
+        
+        // === FORMAT STRING SECURITY ===
+        "-Wformat=2",
+        "-Wformat-security", 
+        "-Werror=format-security",
+        
+        // === RUNTIME PROTECTION (BUILT INTO CLANG/GLIBC) ===
+        "-D_FORTIFY_SOURCE=2",           // NO INSTALLATION NEEDED!
+        "-fstack-protector-strong",      // Stack canary protection
+        
+        // === MEMORY PROTECTION ===
+        "-fPIE", "-Wl,-pie",            // Address space randomization
+        
+        // === OPTIMIZATION (REQUIRED FOR FORTIFY) ===
+        "-O2",                           // FORTIFY_SOURCE requires optimization
+        "-DNDEBUG",                      // Disable debug assertions
+        
+        "main.cpp",
+        "*/*.cpp",
+        "-o",
+        "artifacts/main-production"
+      ],
+      "group": "build",
+      "problemMatcher": ["$clang"]
+    },
+    
+    {
+      "label": "Run Debug Build",
+      "type": "shell",
+      "command": "./artifacts/main-debug",
       "group": "test",
-      "dependsOn": "Build C++ with clang++"
+      "dependsOn": "Build C++ Debug (Development)"
+    },
+    
+    {
+      "label": "Run Production Build",
+      "type": "shell", 
+      "command": "./artifacts/main-production",
+      "group": "test",
+      "dependsOn": "Build C++ Production"
+    },
+    
+    {
+      "label": "Test FORTIFY_SOURCE",
+      "type": "shell",
+      "command": "echo",
+      "args": [
+        "Check if FORTIFY_SOURCE is working by looking for buffer overflow detection"
+      ],
+      "group": "test"
     }
-
   ]
-
 }
 
