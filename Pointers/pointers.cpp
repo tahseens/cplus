@@ -31,8 +31,8 @@ void rawArrayWriteBad() {
 
 void vectorWriteGood() {
     std::vector<int> v(3);
-    for (size_t i = 0; i < v.size(); ++i) {
-        v[i] = static_cast<int>(i);
+    for (int i = 0; i < static_cast<int>(v.size()); ++i) {
+        v[i] = i;  // Clean and simple!
     }
     for (int n : v) std::cout << n << ' ';
     std::cout << '\n';
